@@ -4,7 +4,7 @@ from faker import Faker
 
 
 def pk_inc(start_value: int = 1) -> int:
-    '''инкримент pk'''
+    """инкримент pk"""
 
     pk = start_value
     while True:
@@ -13,7 +13,7 @@ def pk_inc(start_value: int = 1) -> int:
 
 
 def get_title() -> str:
-    '''выдача названия книги из файла'''
+    """выдача названия книги из файла"""
 
     title_list = []
     with open('books.txt', 'rt', encoding='utf-8') as t_f:
@@ -25,7 +25,7 @@ def get_title() -> str:
 
 
 def get_number(wtw: str = 'year') -> int:
-    '''генерация случайного числа (год или кол-во страниц)'''
+    """генерация случайного числа (год или кол-во страниц)"""
 
     if wtw == 'year':
         return random.randint(1700, 2021)
@@ -36,14 +36,14 @@ def get_number(wtw: str = 'year') -> int:
 
 
 def get_isbin() -> str:
-    '''генерация isbin'''
+    """генерация isbin"""
 
     fake = Faker()
     return fake.numerify(text='%%%-%-%%%%-%%%%-%%%-%%')
 
 
 def get_float(wtw: str = 'rating') -> float:
-    '''получение рейтинга или цены'''
+    """получение рейтинга или цены"""
 
     if wtw == 'rating':
         return random.uniform(0.0, 6.0)
@@ -54,7 +54,7 @@ def get_float(wtw: str = 'rating') -> float:
 
 
 def get_author() -> list[str]:
-    '''получение списка авторов'''
+    """получение списка авторов"""
 
     fake = Faker(locale="ru_RU")
     i = random.randint(1, 3)
@@ -63,7 +63,7 @@ def get_author() -> list[str]:
 
 
 def dit_creator(count: int = 5) -> list:
-    '''сборка словаря'''
+    """сборка словаря"""
 
     pk = pk_inc()
     title = get_title()
