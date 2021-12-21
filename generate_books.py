@@ -26,19 +26,20 @@ def get_title() -> str:
     while True:
         yield ''.join(random.choices(title_list))
 
+def fabric_decortor(max_tiltle_len: int = 30):
+    def decorator(fn):
+        gen = fn()
+        def wrapper():
+            result = next(gen)
+            if len(result) > max_tiltle_len:
+                raise ValueError('Длина названия книги несколько больше дозволенного')
+            else:
+                return result
+        return wrapper
+    return decorator
 
-def decorator(fn):
-    gen = fn()
-    def wrapper(max_tiltle_len: int = 30):
-        result = next(gen)
-        if len(result) > max_tiltle_len:
-            raise ValueError('Длина названия книги несколько больше дозволенного')
-        else:
-            return result
-    return wrapper
 
-
-@decorator
+@fabric_decortor
 def effect_get_title(file_name: str = 'books.txt') -> str:
     """
     генератор названия книг (1 раз читает файл, запоминая в список позиции начала строк)
